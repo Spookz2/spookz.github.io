@@ -252,6 +252,112 @@
         // Function to handle search input
         function handleSearch(event) {
             const input = event.target.value.toLowerCase();
+            const suggestionsContainer = document.querySelector('.search-suggestions');
+            suggestionsContainer.innerHTML = ''; // Clear previous suggestions
+
+            if (input) {
+                const filteredGames = games.filter(game => game.name.toLowerCase().includes(input));
+                filteredGames.forEach(game => {
+                    const suggestionItem = document.createElement('div');
+                    suggestionItem.classList.add('suggestion');
+                    suggestionItem.textContent = game.name;
+                    suggestionItem.onclick = () => {
+                        window.location.href = '#section2';
+                        showSection2(); // Go to Section 2
+                    };
+                    suggestionsContainer.appendChild(suggestionItem);
+                });
+
+                if (filteredGames.length > 0) {
+                    suggestionsContainer.style.display = 'block'; // Show suggestions
+                } else {
+                    suggestionsContainer.style.display = 'none'; // Hide suggestions
+                }
+            } else {
+                suggestionsContainer.style.display = 'none'; // Hide suggestions if input is empty
+            }
+        }
+    </script>
+</head>
+<body>
+
+    <div class="loading-screen">
+        <div class="star"></div>
+    </div>
+
+    <div class="section section1">
+        <div class="header">
+            <h1 style="color: grey; font-size: 30px;">Spookz</h1>
+            <button class="community-button" onclick="showSection2(); this.classList.add('underline')">Section 2</button>
+        </div>
+
+        <input type="text" class="search-bar" placeholder="Search for games..." oninput="handleSearch(event)">
+        <div class="search-suggestions"></div>
+        
+        <div style="margin-top: 20px; color: grey;">
+            <a href="https://discord.gg/v92XRQ3Y" target="_blank" class="discord-link">https://discord.gg/v92XRQ3Y</a>
+        </div>
+    </div>
+
+    <div class="section section2">
+        <h2>Featured Games</h2>
+        <div class="game-list">
+            <!-- Game Cards -->
+            <div class="game-card">
+                <h3>Roblox</h3>
+                <p>Explore the world of Roblox.</p>
+                <div class="button" onclick="playGame('https://selfstudybrain.com/')">Play Now</div>
+            </div>
+
+            <div class="game-card">
+                <h3>Pool</h3>
+                <p>Join the fun in 8 Ball Pool.</p>
+                <div class="button" onclick="playGame('https://www.blipzi.com/pool-8-ball-mania.html')">Play Now</div>
+            </div>
+
+            <div class="game-card">
+                <h3>Math Puzzle</h3>
+                <p>Challenge yourself with math puzzles.</p>
+                <div class="button" onclick="playGame('https://blog1201.mathematicstopvaz.site/')">Play Now</div>
+            </div>
+
+            <div class="game-card">
+                <h3>Math Whiz</h3>
+                <p>Test your math skills in this fun game.</p>
+                <div class="button" onclick="playGame('https://mathwhiz.click/')">Play Now</div>
+            </div>
+
+            <div class="game-card">
+                <h3>3kh0 Projects</h3>
+                <p>Explore a variety of fun projects and games.</p>
+                <div class="button" onclick="playGame('https://adfree3kh0.github.io/projects.html')">Play Now</div>
+            </div>
+
+            <div class="game-card">
+                <h3>Brain Teasers</h3>
+                <p>Sharpen your mind with challenging puzzles.</p>
+                <div class="button" onclick="playGame('https://example.com/game6')">Play Now</div>
+            </div>
+
+            <div class="game-card">
+                <h3>Strategy Game</h3>
+                <p>Outsmart your opponents in this strategy game.</p>
+                <div class="button" onclick="playGame('https://example.com/game7')">Play Now</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="popup">
+        <div class="popup-content">
+            <button class="close-popup" onclick="hideCommunityPopup()">X</button>
+            <h2>Join this Discord Server</h2>
+            <p><a href="https://discord.gg/v92XRQ3Y" target="_blank" class="discord-link">https://discord.gg/v92XRQ3Y</a></p>
+        </div>
+    </div>
+
+</body>
+</html>
+
            
 
            
