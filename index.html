@@ -57,7 +57,9 @@
             border: none;
             border-radius: 20px;
             padding: 10px;
-            margin-top: 20px;
+            margin-top: 10px;
+            background-color: #ccc; /* Grey background for search bar */
+            color: #000; /* Text color */
         }
         .search-suggestions {
             display: none; /* Hide suggestions initially */
@@ -83,6 +85,7 @@
             justify-content: space-between;
             align-items: center;
             width: 100%;
+            padding: 10px;
         }
         .section2 {
             background: linear-gradient(135deg, #aaa, #777);
@@ -262,7 +265,6 @@
                     suggestionItem.classList.add('suggestion');
                     suggestionItem.textContent = game.name;
                     suggestionItem.onclick = () => {
-                        window.location.href = '#section2';
                         showSection2(); // Go to Section 2
                     };
                     suggestionsContainer.appendChild(suggestionItem);
@@ -287,7 +289,7 @@
 
     <div class="section section1">
         <div class="header">
-            <h1 style="color: grey; font-size: 30px;">Spookz</h1>
+            <h1 style="color: grey; font-size: 40px;">Spookz</h1> <!-- Increased size -->
             <button class="community-button" onclick="showSection2(); this.classList.add('underline')">Section 2</button>
         </div>
 
@@ -300,7 +302,8 @@
     </div>
 
     <div class="section section2">
-        <h2>Featured Games</h2>
+        <button class="close-popup" onclick="showSection1()">X</button> <!-- Button to go back to Section 1 -->
+        <h2 style="color: white;">Featured Games</h2>
         <div class="game-list">
             <!-- Game Cards -->
             <div class="game-card">
@@ -358,7 +361,6 @@
 </body>
 </html>
 
-           
 
            
 
