@@ -45,6 +45,19 @@
             display: none; /* Hide main content initially */
             padding: 20px;
         }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .community-button {
+            background-color: #fff;
+            color: #000;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
         .container {
             padding: 20px;
             max-width: 1200px;
@@ -83,9 +96,42 @@
             border-radius: 5px;
             margin-top: 10px;
             cursor: pointer;
+            position: relative;
         }
         .button:hover {
             background-color: #ccc;
+        }
+        .popup {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(119, 119, 119, 0.9); /* Grey with transparency */
+            display: none; /* Hidden by default */
+            justify-content: center;
+            align-items: center;
+            z-index: 1001; /* On top of other elements */
+        }
+        .popup-content {
+            background-color: #333;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        .close-popup {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 20px;
+            cursor: pointer;
+        }
+        .zoom-in {
+            transform: scale(1.2);
+            transition: transform 0.3s ease-in-out;
         }
     </style>
     <script>
@@ -110,6 +156,26 @@
         window.onload = () => {
             setTimeout(hideLoading, 2000); // Adjust time as needed for loading effect
         };
+
+        // Function to show community popup
+        function showCommunityPopup() {
+            document.querySelector('.popup').style.display = 'flex';
+        }
+
+        // Function to hide community popup
+        function hideCommunityPopup() {
+            document.querySelector('.popup').style.display = 'none';
+        }
+
+        // Function to handle play button click
+        function playGame(url) {
+            const button = event.target; // Get the button that was clicked
+            button.classList.add('zoom-in'); // Add zoom effect
+            setTimeout(() => {
+                openPopup(url); // Open game link after zoom effect
+                button.classList.remove('zoom-in'); // Remove zoom effect after opening
+            }, 300); // Match timeout with CSS transition duration
+        }
     </script>
 </head>
 <body>
@@ -121,7 +187,7 @@
     <div class="main-content">
         <div class="header">
             <h1>Spookz Unblocked</h1>
-            <p>Access your favorite games instantly!</p>
+            <button class="community-button" onclick="showCommunityPopup()">Community</button>
         </div>
 
         <div class="container">
@@ -131,54 +197,58 @@
                 <div class="game-card">
                     <h3>Roblox</h3>
                     <p>Explore the world of Roblox.</p>
-                    <div class="button" onclick="openPopup('https://selfstudybrain.com/')">Play Now</div>
+                    <div class="button" onclick="playGame('https://selfstudybrain.com/')">Play Now</div>
                 </div>
 
                 <!-- Game 2 - Pool -->
                 <div class="game-card">
                     <h3>Pool</h3>
                     <p>Join the fun in 8 Ball Pool.</p>
-                    <div class="button" onclick="openPopup('https://www.blipzi.com/pool-8-ball-mania.html')">Play Now</div>
+                    <div class="button" onclick="playGame('https://www.blipzi.com/pool-8-ball-mania.html')">Play Now</div>
                 </div>
 
                 <!-- Game 3 -->
                 <div class="game-card">
                     <h3>Math Puzzle</h3>
                     <p>Challenge yourself with math puzzles.</p>
-                    <div class="button" onclick="openPopup('https://blog1201.mathematicstopvaz.site/')">Play Now</div>
+                    <div class="button" onclick="playGame('https://blog1201.mathematicstopvaz.site/')">Play Now</div>
                 </div>
 
                 <!-- Game 4 -->
                 <div class="game-card">
                     <h3>Math Whiz</h3>
                     <p>Test your math skills in this fun game.</p>
-                    <div class="button" onclick="openPopup('https://mathwhiz.click/')">Play Now</div>
+                    <div class="button" onclick="playGame('https://mathwhiz.click/')">Play Now</div>
                 </div>
 
                 <!-- Game 5 -->
                 <div class="game-card">
                     <h3>3kh0 Projects</h3>
                     <p>Explore a variety of fun projects and games.</p>
-                    <div class="button" onclick="openPopup('https://adfree3kh0.github.io/projects.html')">Play Now</div>
+                    <div class="button" onclick="playGame('https://adfree3kh0.github.io/projects.html')">Play Now</div>
                 </div>
 
                 <!-- Game 6 -->
                 <div class="game-card">
                     <h3>Brain Teasers</h3>
                     <p>Sharpen your mind with challenging puzzles.</p>
-                    <div class="button" onclick="openPopup('https://example.com/game6')">Play Now</div>
+                    <div class="button" onclick="playGame('https://example.com/game6')">Play Now</div>
                 </div>
 
                 <!-- Game 7 -->
                 <div class="game-card">
                     <h3>Strategy Game</h3>
                     <p>Outsmart your opponents in this strategy game.</p>
-                    <div class="button" onclick="openPopup('https://example.com/game7')">Play Now</div>
+                    <div class="button" onclick="playGame('https://example.com/game7')">Play Now</div>
                 </div>
             </div>
         </div>
-    </div>
 
-</body>
-</html>
+        <!-- Community Popup -->
+        <div class="popup">
+            <div class="popup-content">
+                <button class="close-popup" onclick="hideCommunityPopup()">×</button>
+                <h2>Join This Discord Server</h2>
+                <p><a href="https://discord.gg/v92XRQ3Y" target="_blank" style="color: #fff; text
+
 
