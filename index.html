@@ -9,7 +9,7 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            overflow: hidden; /* Prevent scrolling during loading */
+            overflow: hidden;
         }
         .loading-screen {
             position: fixed;
@@ -17,17 +17,17 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: #777; /* Grey background */
+            background-color: #777;
             display: flex;
             justify-content: center;
             align-items: center;
-            z-index: 1000; /* Ensure it covers all content */
+            z-index: 1000;
             transition: opacity 1s ease;
         }
         .star {
             width: 50px;
             height: 50px;
-            background-color: white; /* White star */
+            background-color: white;
             clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
             animation: spin 2s linear infinite;
         }
@@ -40,11 +40,11 @@
             }
         }
         .section {
-            display: none; /* Hide sections initially */
+            display: none;
             padding: 20px;
         }
         .section1 {
-            background-color: #000; /* Black background for Section 1 */
+            background-color: #000;
             height: 100vh;
             display: flex;
             flex-direction: column;
@@ -57,12 +57,11 @@
             border: none;
             border-radius: 20px;
             padding: 10px;
-            margin-top: 10px;
-            background-color: #ccc; /* Grey background for search bar */
-            color: #000; /* Text color */
+            background-color: #ccc;
+            color: #000;
         }
         .search-suggestions {
-            display: none; /* Hide suggestions initially */
+            display: none;
             position: absolute;
             background-color: #fff;
             color: #000;
@@ -82,14 +81,14 @@
         }
         .header {
             display: flex;
-            justify-content: space-between;
+            justify-content: flex-end;
             align-items: center;
             width: 100%;
             padding: 10px;
         }
         .section2 {
             background: linear-gradient(135deg, #aaa, #777);
-            height: 100vh; /* Full viewport height for Section 2 */
+            height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -153,11 +152,11 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(119, 119, 119, 0.9); /* Grey with transparency */
-            display: none; /* Hidden by default */
+            background-color: rgba(119, 119, 119, 0.9);
+            display: none;
             justify-content: center;
             align-items: center;
-            z-index: 1001; /* On top of other elements */
+            z-index: 1001;
         }
         .popup-content {
             background-color: #333;
@@ -176,11 +175,11 @@
             cursor: pointer;
         }
         .discord-link {
-            color: #00bfff; /* Discord blue color */
-            text-decoration: underline; /* Underline for link */
+            color: #00bfff;
+            text-decoration: underline;
         }
         .underline {
-            text-decoration: underline; /* Underline style */
+            text-decoration: underline;
         }
         .zoom-in {
             transform: scale(1.2);
@@ -193,93 +192,74 @@
             { name: "Pool", url: "https://www.blipzi.com/pool-8-ball-mania.html" },
             { name: "Math Puzzle", url: "https://blog1201.mathematicstopvaz.site/" },
             { name: "Math Whiz", url: "https://mathwhiz.click/" },
-            { name: "3kh0 Projects", url: "https://adfree3kh0.github.io/projects.html" },
-            { name: "Brain Teasers", url: "https://example.com/game6" },
-            { name: "Strategy Game", url: "https://example.com/game7" }
+            { name: "3kh0 Projects", url: "https://adfree3kh0.github.io/projects.html" }
         ];
 
-        // Function to open a popup window
         function openPopup(url) {
             window.open(url, 'popupWindow', 'width=800,height=600,scrollbars=yes');
         }
 
-        // Function to handle loading screen
         function hideLoading() {
             const loadingScreen = document.querySelector('.loading-screen');
             const section1 = document.querySelector('.section1');
-            loadingScreen.style.opacity = '0'; // Fade out
+            loadingScreen.style.opacity = '0';
             setTimeout(() => {
-                loadingScreen.style.display = 'none'; // Hide after fading
-                section1.style.display = 'flex'; // Show section 1
-                document.body.style.overflow = 'auto'; // Enable scrolling
-            }, 1000); // Match timeout with CSS transition duration
+                loadingScreen.style.display = 'none';
+                section1.style.display = 'flex';
+                document.body.style.overflow = 'auto';
+            }, 1000);
         }
 
-        // Show loading screen and then load main content
         window.onload = () => {
-            setTimeout(hideLoading, 2000); // Adjust time as needed for loading effect
-            showSection1(); // Show section 1 on refresh
+            setTimeout(hideLoading, 2000);
+            showSection1();
         };
 
-        // Function to show community popup
         function showCommunityPopup() {
             document.querySelector('.popup').style.display = 'flex';
         }
 
-        // Function to hide community popup
         function hideCommunityPopup() {
             document.querySelector('.popup').style.display = 'none';
         }
 
-        // Function to handle play button click
         function playGame(url) {
-            const button = event.target; // Get the button that was clicked
-            button.classList.add('zoom-in'); // Add zoom effect
+            const button = event.target;
+            button.classList.add('zoom-in');
             setTimeout(() => {
-                openPopup(url); // Open game link after zoom effect
-                button.classList.remove('zoom-in'); // Remove zoom effect after opening
-            }, 300); // Match timeout with CSS transition duration
+                openPopup(url);
+                button.classList.remove('zoom-in');
+            }, 300);
         }
 
-        // Show section 2 (Games) and hide section 1
         function showSection2() {
-            document.querySelector('.section1').style.display = 'none'; // Hide Section 1
-            document.querySelector('.section2').style.display = 'flex'; // Show Section 2
+            document.querySelector('.section1').style.display = 'none';
+            document.querySelector('.section2').style.display = 'flex';
         }
 
-        // Show section 1
         function showSection1() {
-            document.querySelector('.section1').style.display = 'flex'; // Show Section 1
-            document.querySelector('.section2').style.display = 'none'; // Hide Section 2
+            document.querySelector('.section1').style.display = 'flex';
+            document.querySelector('.section2').style.display = 'none';
         }
 
-        // Function to handle search input
         function handleSearch(event) {
             const searchTerm = event.target.value.toLowerCase();
             const suggestionsContainer = document.querySelector('.search-suggestions');
 
-            // Filter games based on the search term
             const filteredGames = games.filter(game => game.name.toLowerCase().includes(searchTerm));
-
-            // Clear previous suggestions
             suggestionsContainer.innerHTML = '';
 
-            // Create suggestion items
             filteredGames.forEach(game => {
                 const suggestionItem = document.createElement('div');
                 suggestionItem.classList.add('suggestion');
                 suggestionItem.textContent = game.name;
                 suggestionItem.onclick = () => {
-                    showSection2(); // Go to Section 2
+                    showSection2();
                 };
                 suggestionsContainer.appendChild(suggestionItem);
             });
 
-            if (filteredGames.length > 0) {
-                suggestionsContainer.style.display = 'block'; // Show suggestions
-            } else {
-                suggestionsContainer.style.display = 'none'; // Hide suggestions
-            }
+            suggestionsContainer.style.display = filteredGames.length > 0 ? 'block' : 'none';
         }
     </script>
 </head>
@@ -291,11 +271,10 @@
 
     <div class="section section1">
         <div class="header">
-            <h1 style="color: grey; font-size: 40px; text-align: center;">Spookz</h1> <!-- Centered and grey -->
-            <button class="community-button" onclick="showSection2(); this.classList.add('underline')">Games &#x1F3AE;</button> <!-- Controller icon -->
+            <button class="community-button" onclick="showSection2(); this.classList.add('underline')">+</button>
         </div>
 
-        <input type="text" class="search-bar" placeholder="Search for games..." oninput="handleSearch(event)">
+        <input type="text" class="search-bar" placeholder="Spookz" oninput="handleSearch(event)">
         <div class="search-suggestions"></div>
         
         <div style="margin-top: 20px; color: grey;">
@@ -303,65 +282,7 @@
         </div>
     </div>
 
-    <div class="section section2">
-        <button class="close-popup" onclick="showSection1()">X</button> <!-- Button to go back to Section 1 -->
-        <h2 style="color: white;">Featured Games</h2>
-        <div class="game-list">
-            <!-- Game Cards -->
-            <div class="game-card">
-                <h3>Roblox</h3>
-                <p>Explore the world of Roblox.</p>
-                <div class="button" onclick="playGame('https://selfstudybrain.com/')">Play Now</div>
-            </div>
-
-            <div class="game-card">
-                <h3>Pool</h3>
-                <p>Join the fun in 8 Ball Pool.</p>
-                <div class="button" onclick="playGame('https://www.blipzi.com/pool-8-ball-mania.html')">Play Now</div>
-            </div>
-
-            <div class="game-card">
-                <h3>Math Puzzle</h3>
-                <p>Challenge yourself with math puzzles.</p>
-                <div class="button" onclick="playGame('https://blog1201.mathematicstopvaz.site/')">Play Now</div>
-            </div>
-
-            <div class="game-card">
-                <h3>Math Whiz</h3>
-                <p>Test your math skills in this fun game.</p>
-                <div class="button" onclick="playGame('https://mathwhiz.click/')">Play Now</div>
-            </div>
-
-            <div class="game-card">
-                <h3>3kh0 Projects</h3>
-                <p>Explore a variety of fun projects and games.</p>
-                <div class="button" onclick="playGame('https://adfree3kh0.github.io/projects.html')">Play Now</div>
-            </div>
-
-            <div class="game-card">
-                <h3>Brain Teasers</h3>
-                <p>Sharpen your mind with challenging puzzles.</p>
-                <div class="button" onclick="playGame('https://example.com/game6')">Play Now</div>
-            </div>
-
-            <div class="game-card">
-                <h3>Strategy Game</h3>
-                <p>Outsmart your opponents in this strategy game.</p>
-                <div class="button" onclick="playGame('https://example.com/game7')">Play Now</div>
-            </div>
-        </div>
-    </div>
-
-    <div class="popup">
-        <div class="popup-content">
-            <button class="close-popup" onclick="hideCommunityPopup()">X</button>
-            <h2>Join this Discord Server</h2>
-            <p><a href="https://discord.gg/v92XRQ3Y" target="_blank" class="discord-link">https://discord.gg/v92XRQ3Y</a></p>
-        </div>
-    </div>
-
-</body>
-</html>
+    <div class
 
 
 
