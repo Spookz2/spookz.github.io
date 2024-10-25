@@ -7,11 +7,16 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #000;
+            background: linear-gradient(135deg, #aaa, #777);
             color: #fff;
             margin: 0;
             padding: 0;
             overflow: hidden; /* Prevent scrolling during loading */
+            animation: moveBackground 10s linear infinite; /* Background animation */
+        }
+        @keyframes moveBackground {
+            0% { background-position: 0% 0%; }
+            100% { background-position: 100% 100%; }
         }
         .loading-screen {
             position: fixed;
@@ -133,6 +138,10 @@
             transform: scale(1.2);
             transition: transform 0.3s ease-in-out;
         }
+        .discord-link {
+            color: #00bfff; /* Discord blue color */
+            text-decoration: underline; /* Underline for link */
+        }
     </style>
     <script>
         // Function to open a popup window
@@ -241,14 +250,7 @@
                     <p>Outsmart your opponents in this strategy game.</p>
                     <div class="button" onclick="playGame('https://example.com/game7')">Play Now</div>
                 </div>
-            </div>
-        </div>
+           
 
-        <!-- Community Popup -->
-        <div class="popup">
-            <div class="popup-content">
-                <button class="close-popup" onclick="hideCommunityPopup()">×</button>
-                <h2>Join This Discord Server</h2>
-                <p><a href="https://discord.gg/v92XRQ3Y" target="_blank" style="color: #fff; text
 
 
