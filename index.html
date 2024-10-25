@@ -7,16 +7,9 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background: linear-gradient(135deg, #aaa, #777);
-            color: #fff;
             margin: 0;
             padding: 0;
             overflow: hidden; /* Prevent scrolling during loading */
-            animation: moveBackground 10s linear infinite; /* Background animation */
-        }
-        @keyframes moveBackground {
-            0% { background-position: 0% 0%; }
-            100% { background-position: 100% 100%; }
         }
         .loading-screen {
             position: fixed;
@@ -46,14 +39,59 @@
                 transform: rotate(360deg);
             }
         }
-        .main-content {
-            display: none; /* Hide main content initially */
+        .section {
+            display: none; /* Hide sections initially */
             padding: 20px;
+        }
+        .section1 {
+            background-color: #000; /* Black background for Section 1 */
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .search-bar {
+            width: 400px;
+            height: 40px;
+            border: none;
+            border-radius: 20px;
+            padding: 10px;
+            margin-top: 20px;
+        }
+        .search-suggestions {
+            display: none; /* Hide suggestions initially */
+            position: absolute;
+            background-color: #fff;
+            color: #000;
+            width: 400px;
+            max-height: 200px;
+            overflow-y: auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+            z-index: 100;
+        }
+        .suggestion {
+            padding: 10px;
+            cursor: pointer;
+        }
+        .suggestion:hover {
+            background-color: #ddd;
         }
         .header {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            width: 100%;
+        }
+        .section2 {
+            background: linear-gradient(135deg, #aaa, #777);
+            height: 100vh; /* Full viewport height for Section 2 */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 20px;
         }
         .community-button {
             background-color: #fff;
@@ -134,16 +172,29 @@
             font-size: 20px;
             cursor: pointer;
         }
-        .zoom-in {
-            transform: scale(1.2);
-            transition: transform 0.3s ease-in-out;
-        }
         .discord-link {
             color: #00bfff; /* Discord blue color */
             text-decoration: underline; /* Underline for link */
         }
+        .underline {
+            text-decoration: underline; /* Underline style */
+        }
+        .zoom-in {
+            transform: scale(1.2);
+            transition: transform 0.3s ease-in-out;
+        }
     </style>
     <script>
+        let games = [
+            { name: "Roblox", url: "https://selfstudybrain.com/" },
+            { name: "Pool", url: "https://www.blipzi.com/pool-8-ball-mania.html" },
+            { name: "Math Puzzle", url: "https://blog1201.mathematicstopvaz.site/" },
+            { name: "Math Whiz", url: "https://mathwhiz.click/" },
+            { name: "3kh0 Projects", url: "https://adfree3kh0.github.io/projects.html" },
+            { name: "Brain Teasers", url: "https://example.com/game6" },
+            { name: "Strategy Game", url: "https://example.com/game7" }
+        ];
+
         // Function to open a popup window
         function openPopup(url) {
             window.open(url, 'popupWindow', 'width=800,height=600,scrollbars=yes');
@@ -152,11 +203,11 @@
         // Function to handle loading screen
         function hideLoading() {
             const loadingScreen = document.querySelector('.loading-screen');
-            const mainContent = document.querySelector('.main-content');
+            const section1 = document.querySelector('.section1');
             loadingScreen.style.opacity = '0'; // Fade out
             setTimeout(() => {
                 loadingScreen.style.display = 'none'; // Hide after fading
-                mainContent.style.display = 'block'; // Show main content
+                section1.style.display = 'flex'; // Show section 1
                 document.body.style.overflow = 'auto'; // Enable scrolling
             }, 1000); // Match timeout with CSS transition duration
         }
@@ -185,71 +236,24 @@
                 button.classList.remove('zoom-in'); // Remove zoom effect after opening
             }, 300); // Match timeout with CSS transition duration
         }
-    </script>
-</head>
-<body>
 
-    <div class="loading-screen">
-        <div class="star"></div>
-    </div>
+        // Show section 2 and hide section 1
+        function showSection2() {
+            document.querySelector('.section1').style.display = 'none'; // Hide Section 1
+            document.querySelector('.section2').style.display = 'flex'; // Show Section 2
+        }
 
-    <div class="main-content">
-        <div class="header">
-            <h1>Spookz Unblocked</h1>
-            <button class="community-button" onclick="showCommunityPopup()">Community</button>
-        </div>
+        // Show section 1
+        function showSection1() {
+            document.querySelector('.section1').style.display = 'flex'; // Show Section 1
+            document.querySelector('.section2').style.display = 'none'; // Hide Section 2
+        }
 
-        <div class="container">
-            <h2>Featured Games</h2>
-            <div class="game-list">
-                <!-- Game 1 - Roblox -->
-                <div class="game-card">
-                    <h3>Roblox</h3>
-                    <p>Explore the world of Roblox.</p>
-                    <div class="button" onclick="playGame('https://selfstudybrain.com/')">Play Now</div>
-                </div>
+        // Function to handle search input
+        function handleSearch(event) {
+            const input = event.target.value.toLowerCase();
+           
 
-                <!-- Game 2 - Pool -->
-                <div class="game-card">
-                    <h3>Pool</h3>
-                    <p>Join the fun in 8 Ball Pool.</p>
-                    <div class="button" onclick="playGame('https://www.blipzi.com/pool-8-ball-mania.html')">Play Now</div>
-                </div>
-
-                <!-- Game 3 -->
-                <div class="game-card">
-                    <h3>Math Puzzle</h3>
-                    <p>Challenge yourself with math puzzles.</p>
-                    <div class="button" onclick="playGame('https://blog1201.mathematicstopvaz.site/')">Play Now</div>
-                </div>
-
-                <!-- Game 4 -->
-                <div class="game-card">
-                    <h3>Math Whiz</h3>
-                    <p>Test your math skills in this fun game.</p>
-                    <div class="button" onclick="playGame('https://mathwhiz.click/')">Play Now</div>
-                </div>
-
-                <!-- Game 5 -->
-                <div class="game-card">
-                    <h3>3kh0 Projects</h3>
-                    <p>Explore a variety of fun projects and games.</p>
-                    <div class="button" onclick="playGame('https://adfree3kh0.github.io/projects.html')">Play Now</div>
-                </div>
-
-                <!-- Game 6 -->
-                <div class="game-card">
-                    <h3>Brain Teasers</h3>
-                    <p>Sharpen your mind with challenging puzzles.</p>
-                    <div class="button" onclick="playGame('https://example.com/game6')">Play Now</div>
-                </div>
-
-                <!-- Game 7 -->
-                <div class="game-card">
-                    <h3>Strategy Game</h3>
-                    <p>Outsmart your opponents in this strategy game.</p>
-                    <div class="button" onclick="playGame('https://example.com/game7')">Play Now</div>
-                </div>
            
 
 
